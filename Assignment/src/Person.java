@@ -1,77 +1,76 @@
-public class Person
+/**
+ * @author Elliot Lewis
+ */
+class Person
 {
 	private String name, natInscNo, dob, address, postcode;
 	private char gender;
-	public Person()
-	{
-		//
-	}
-	public String getName()
+	String getName()
 	{
 		return name;
 	}
-	public void setName(String name)
+	void setName(String name)
 	{
-		this.name = name;
+		if(name != null) this.name = name;
 	}
-	public char getGender()
+	char getGender()
 	{
 		return gender;
 	}
-	public void setGender(char gender)
+	void setGender(char gender)
 	{
 		this.gender = gender;
 	}
-	public String getNatInscNo()
+	String getNatInscNo()
 	{
 		return natInscNo;
 	}
-	public void setNatInscNo(String natInscNo)
+	void setNatInscNo(String natInscNo)
 	{
-		this.natInscNo = natInscNo;
+		if(natInscNo != null) this.natInscNo = natInscNo;
 	}
-	public String getDob()
+	String getDob()
 	{
 		return dob;
 	}
-	public void setDob(String dob)
+	void setDob(String dob)
 	{
-		this.dob = dob;
+		if(dob != null) this.dob = dob;
 	}
-	public String getAddress()
+	String getAddress()
 	{
 		return address;
 	}
-	public void setAddress(String address)
+	void setAddress(String address)
 	{
-		this.address = address;
+		if(address != null) this.address = address;
 	}
-	public String getPostcode()
+	String getPostcode()
 	{
 		return postcode;
 	}
-	public void setPostcode(String postcode)
+	void setPostcode(String postcode)
 	{
-		this.postcode = postcode;
+		if(postcode != null) this.postcode = postcode;
 	}
 	public String toString()
 	{
 		String out = "";
 		if(getName() != null) {
-			out += "Name: " + getName() + System.lineSeparator();
+			out += "Name: " + getName() + System.getProperty("line.separator");
 		}
-		out += "Gender: " + getGender() + System.lineSeparator();
+		out += "Gender: " + getGender() + System.getProperty("line.separator");
 		if(getNatInscNo() != null) {
-			out += "NatInscNo: " + getNatInscNo() + System.lineSeparator();
+			out += "NatInscNo: " + getNatInscNo() + System.getProperty("line.separator");
 		}
 		if(getDob() != null) {
-			out += "DoB: " + getDob() + System.lineSeparator();
+			out += "DoB: " + getDob() + System.getProperty("line.separator");
 		}
 		if(getAddress() != null) {
-			out += "Address: " + getAddress() + System.lineSeparator();
+			out += "Address: " + getAddress() + System.getProperty("line.separator");
 		}
 		if(getPostcode() != null) {
-			out += "Address: " + getPostcode() + System.lineSeparator();
+			out += "Address: " + getPostcode() + System.getProperty("line.separator");
 		}
 		return out;
 	}

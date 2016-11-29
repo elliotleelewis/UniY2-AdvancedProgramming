@@ -1,21 +1,27 @@
+import javax.swing.*;
 import java.sql.*;
+/**
+ * @author Elliot Lewis
+ */
 public class Controller
 {
-	/**
-	 * @author Elliot Lewis
-	 */
 	public static void main(String[] args)
 	{
-		EmployeeDAO edao = new EmployeeDAO();
-		//Statement s = edao.getConnection();
-		try {
-			for(Employee e: edao.selectAllEmployees()) {
-				System.out.println(e.getName());
+		new EmployeeDAO();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Display d = new Display();
+					d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+					d.setVisible(true);
+					d.setLocationRelativeTo(null);
+				}
+				catch(SQLException e) {
+					e.printStackTrace();
+					System.exit(0);
+				}
 			}
-			System.out.println(edao.selectEmployeeByName("Elliot Lewis").getPostcode());
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
+		});
 	}
 }

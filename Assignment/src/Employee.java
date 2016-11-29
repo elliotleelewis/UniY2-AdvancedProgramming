@@ -1,67 +1,80 @@
-public class Employee extends Person
+import java.awt.*;
+/**
+ * @author Elliot Lewis
+ */
+class Employee extends Person
 {
 	private String email, title, id, salary, startDate;
-	public Employee()
+	private Image image;
+	Employee()
 	{
 		super();
 	}
-	public String getEmail()
+	String getEmail()
 	{
 		return email;
 	}
-	public void setEmail(String email)
+	void setEmail(String email)
 	{
-		this.email = email;
+		if(email != null) this.email = email;
 	}
-	public String getTitle()
+	String getTitle()
 	{
 		return title;
 	}
-	public void setTitle(String title)
+	void setTitle(String title)
 	{
-		this.title = title;
+		if(title != null) this.title = title;
 	}
-	public String getId()
+	String getId()
 	{
 		return id;
 	}
-	public void setId(String id)
+	void setId(String id)
 	{
-		this.id = id;
+		if(id != null) this.id = id;
 	}
-	public String getSalary()
+	String getSalary()
 	{
 		return salary;
 	}
-	public void setSalary(String salary)
+	void setSalary(String salary)
 	{
-		this.salary = salary;
+		if(salary != null) this.salary = salary;
 	}
-	public String getStartDate()
+	String getStartDate()
 	{
 		return startDate;
 	}
-	public void setStartDate(String startDate)
+	void setStartDate(String startDate)
 	{
-		this.startDate = startDate;
+		if(startDate != null) this.startDate = startDate;
+	}
+	Image getImage()
+	{
+		return image;
+	}
+	void setImage(Image image)
+	{
+		if(image != null) this.image = image;
 	}
 	public String toString()
 	{
 		String out = super.toString();
 		if(getEmail() != null) {
-			out += "Email: " + getEmail() + System.lineSeparator();
+			out += "Email: " + getEmail() + System.getProperty("line.separator");
 		}
 		if(getTitle() != null) {
-			out += "Email: " + getTitle() + System.lineSeparator();
+			out += "Title: " + getTitle() + System.getProperty("line.separator");
 		}
 		if(getId() != null) {
-			out += "Email: " + getId() + System.lineSeparator();
+			out += "ID: " + getId() + System.getProperty("line.separator");
 		}
 		if(getSalary() != null) {
-			out += "Email: " + getSalary() + System.lineSeparator();
+			out += "Salary: " + getSalary() + System.getProperty("line.separator");
 		}
 		if(getStartDate() != null) {
-			out += "Email: " + getStartDate() + System.lineSeparator();
+			out += "StartDate: " + getStartDate() + System.getProperty("line.separator");
 		}
 		return out;
 	}
