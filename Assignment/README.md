@@ -3,4 +3,4 @@ The assignment was to create an employee database, based off of the specificatio
 * SQLite database to store the data
 * CRUD for the database
 * Search system
-* Ima
+* Images for employees stored as bytes in the database
