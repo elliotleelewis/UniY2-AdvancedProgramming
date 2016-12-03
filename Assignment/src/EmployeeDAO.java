@@ -13,6 +13,9 @@ class EmployeeDAO
 {
 	private static Connection c;
 	private static Statement s;
+	/**
+	 *
+	 */
 	EmployeeDAO()
 	{
 		try {
@@ -24,10 +27,16 @@ class EmployeeDAO
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @return
+	 */
 	static Statement getConnection()
 	{
 		return s;
 	}
+	/**
+	 *
+	 */
 	static void closeConnection()
 	{
 		try {
@@ -38,6 +47,13 @@ class EmployeeDAO
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @param res
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
 	private static Employee convertEmployee(ResultSet res) throws SQLException
 	{
 		Employee e = new Employee();
@@ -56,6 +72,13 @@ class EmployeeDAO
 			e.setImage(Toolkit.getDefaultToolkit().createImage(res.getBytes("Image")));
 		return e;
 	}
+	/**
+	 * @param res
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
 	private static ArrayList<Employee> convertEmployees(ResultSet res) throws SQLException
 	{
 		ArrayList<Employee> array = new ArrayList<Employee>();
@@ -64,11 +87,23 @@ class EmployeeDAO
 		}
 		return array;
 	}
+	/**
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
 	static ArrayList<Employee> selectAllEmployees() throws SQLException
 	{
 		ResultSet res = getConnection().executeQuery("SELECT * FROM employees");
 		return convertEmployees(res);
 	}
+	/**
+	 * @param name
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
 	static Employee selectEmployeeByName(String name) throws SQLException
 	{
 		PreparedStatement s = c.prepareStatement("SELECT * FROM employees WHERE Name=? LIMIT 1");
@@ -80,10 +115,25 @@ class EmployeeDAO
 		}
 		return e;
 	}
+	/**
+	 * @param e
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
 	static boolean insertEmployee(Employee e) throws SQLException
 	{
 		return insertEmployeeAtId(e, null);
 	}
+	/**
+	 * @param e
+	 * @param id
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
 	static boolean insertEmployeeAtId(Employee e, String id) throws SQLException
 	{
 		PreparedStatement s;
@@ -105,10 +155,57 @@ class EmployeeDAO
 		s.setString(9 + offset, e.getStartDate());
 		s.setString(10 + offset, e.getSalary());
 		s.setString(11 + offset, e.getEmail());
+		s.setBytes(12 + offset, convertImage(e.getImage()));
+		return s.execute();
+	}
+	/**
+	 * @param e
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
+	static int updateEmployee(Employee e) throws SQLException
+	{
+		PreparedStatement s = c.prepareStatement("UPDATE employees SET Name=?, Gender=?, DOB=?, Address=?, Postcode=?, NIN=?, JobTitle=?, StartDate=?, Salary=?, Email=?, Image=? WHERE ID=?");
+		s.setString(1, e.getName());
+		s.setString(2, String.valueOf(e.getGender()));
+		s.setString(3, e.getDob());
+		s.setString(4, e.getAddress());
+		s.setString(5, e.getPostcode());
+		s.setString(6, e.getNatInscNo());
+		s.setString(7, e.getTitle());
+		s.setString(8, e.getStartDate());
+		s.setString(9, e.getSalary());
+		s.setString(10, e.getEmail());
+		s.setBytes(11, convertImage(e.getImage()));
+		s.setString(12, e.getId());
+		return s.executeUpdate();
+	}
+	/**
+	 * @param id
+	 *
+	 * @return
+	 *
+	 * @throws SQLException
+	 */
+	static boolean deleteEmployeeById(String id) throws SQLException
+	{
+		PreparedStatement s = c.prepareStatement("DELETE FROM employees WHERE ID=?");
+		s.setString(1, id);
+		return s.executeUpdate() > 0;
+	}
+	/**
+	 * @param image
+	 *
+	 * @return
+	 */
+	private static byte[] convertImage(Image image)
+	{
 		ByteArrayOutputStream baos = null;
-		BufferedImage bi = new BufferedImage(e.getImage().getWidth(null), e.getImage().getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = bi.createGraphics();
-		g2d.drawImage(e.getImage(), 0, 0, null);
+		g2d.drawImage(image, 0, 0, null);
 		g2d.dispose();
 		try {
 			baos = new ByteArrayOutputStream();
@@ -125,13 +222,6 @@ class EmployeeDAO
 				e1.printStackTrace();
 			}
 		}
-		s.setBytes(12 + offset, baos.toByteArray());
-		return s.execute();
-	}
-	static boolean deleteEmployeeById(String id) throws SQLException
-	{
-		PreparedStatement s = c.prepareStatement("DELETE FROM employees WHERE ID=?");
-		s.setString(1, id);
-		return s.executeUpdate() > 0;
+		return baos.toByteArray();
 	}
 }
