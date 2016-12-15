@@ -144,18 +144,11 @@ class MainForm extends JFrame
 					@Override
 					public void run()
 					{
-						try {
-							Search s = new Search();
-							s.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-							s.setAlwaysOnTop(true);
-							s.setVisible(true);
-							s.setLocationRelativeTo(null);
-						}
-						catch(SQLException e) {
-							e.printStackTrace();
-							JOptionPane.showMessageDialog(MainForm.this, e.getStackTrace(), "Error", JOptionPane.ERROR_MESSAGE);
-							System.exit(0);
-						}
+						Search s = new Search();
+						s.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+						s.setAlwaysOnTop(true);
+						s.setVisible(true);
+						s.setLocationRelativeTo(null);
 					}
 				});
 			}
