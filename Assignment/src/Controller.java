@@ -1,13 +1,16 @@
 import javax.swing.*;
 import java.sql.*;
 /**
+ * The {@link Controller} class contains the main method and is the class that's run when the program is launched.
+ *
  * @author Elliot Lewis
  * @version 1.0
  */
 public class Controller
 {
 	/**
-	 *
+	 * The main method is run when the program is launched. It sets the properties and look and feel of the application,
+	 * as well as initialising the {@link EmployeeDAO} class and finally, launching the main form.
 	 */
 	public static void main(String[] args)
 	{
@@ -23,9 +26,6 @@ public class Controller
 		new EmployeeDAO();
 		SwingUtilities.invokeLater(new Runnable()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void run()
 			{
@@ -38,6 +38,12 @@ public class Controller
 				}
 				catch(SQLException e) {
 					e.printStackTrace();
+					try {
+						EmployeeDAO.closeConnection();
+					}
+					catch(SQLException e1) {
+						e1.printStackTrace();
+					}
 					System.exit(0);
 				}
 			}

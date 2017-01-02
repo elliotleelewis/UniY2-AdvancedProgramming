@@ -1,9 +1,3 @@
 .idea/
-.metadata/
-.recommenders/
-RemoteSystemsTempFiles/
 *.iml
-*/.classpath
-*/.project
-*/.settings/
-*/bin/
+*/out/

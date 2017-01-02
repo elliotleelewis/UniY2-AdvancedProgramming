@@ -6,6 +6,9 @@ import java.util.*;
 import javax.imageio.*;
 import javax.swing.*;
 /**
+ * This class is the Database Access Object, its used to bridge the application and the database and is used whenever
+ * data need to be created, retrieved, updated and deleted from the database.
+ *
  * @author Elliot Lewis
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -14,7 +17,8 @@ class EmployeeDAO
 	private static Connection c;
 	private static Statement s;
 	/**
-	 *
+	 * The {@link EmployeeDAO} constructor initialises the connection with the database and creates the statement that
+	 * will be used by the queries within the class's functions.
 	 */
 	EmployeeDAO()
 	{
@@ -28,31 +32,34 @@ class EmployeeDAO
 		}
 	}
 	/**
-	 * @return
+	 * Returns the connection to the SQLite database.
+	 *
+	 * @return Connection to the SQLite database.
 	 */
 	static Statement getConnection()
 	{
 		return s;
 	}
 	/**
-	 *
-	 */
-	static void closeConnection()
-	{
-		try {
-			c.close();
-		}
-		catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "Unable to close connection to DB.");
-			e.printStackTrace();
-		}
-	}
-	/**
-	 * @param res
-	 *
-	 * @return
+	 * Attempts to close the connection to the SQLite database.
 	 *
 	 * @throws SQLException
+	 * 		If unable to close connection to the SQLite database.
+	 */
+	static void closeConnection() throws SQLException
+	{
+		c.close();
+	}
+	/**
+	 * Converts ResultSet query results to {@link Employee} object.
+	 *
+	 * @param res
+	 * 		ResultSet query results to convert.
+	 *
+	 * @return Converted ResultSet.
+	 *
+	 * @throws SQLException
+	 * 		If column that's queried doesn't exist in the ResultSet.
 	 */
 	private static Employee convertEmployee(ResultSet res) throws SQLException
 	{
@@ -73,11 +80,16 @@ class EmployeeDAO
 		return e;
 	}
 	/**
-	 * @param res
+	 * Converts a result set containing multiple employees, to an ArrayList containing {@link Employee} objects that
+	 * represent the multiple employees.
 	 *
-	 * @return
+	 * @param res
+	 * 		The ResultSet to convert.
+	 *
+	 * @return The ArrayList of converted employees.
 	 *
 	 * @throws SQLException
+	 * 		If the result set fails to iterate.
 	 */
 	private static ArrayList<Employee> convertEmployees(ResultSet res) throws SQLException
 	{
@@ -88,9 +100,12 @@ class EmployeeDAO
 		return array;
 	}
 	/**
-	 * @return
+	 * Selects all employees from the SQLite database.
+	 *
+	 * @return ArrayList containing {@link Employee} objects representing each database entity.
 	 *
 	 * @throws SQLException
+	 * 		If the query fails.
 	 */
 	static ArrayList<Employee> selectAllEmployees() throws SQLException
 	{
@@ -98,11 +113,15 @@ class EmployeeDAO
 		return convertEmployees(res);
 	}
 	/**
-	 * @param name
+	 * Selects employee from the SQLite database with the name matching the one passed into the function.
 	 *
-	 * @return
+	 * @param name
+	 * 		The name to query for in the SQLite database.
+	 *
+	 * @return The Employee object representing the correct employee.
 	 *
 	 * @throws SQLException
+	 * 		If the query fails.
 	 */
 	static Employee selectEmployeeByName(String name) throws SQLException
 	{
@@ -116,54 +135,67 @@ class EmployeeDAO
 		return e;
 	}
 	/**
-	 * @param e
+	 * Inserts {@link Employee} object into the SQLite database.
 	 *
-	 * @return
+	 * @param e
+	 * 		The {@link Employee} object to insert.
+	 *
+	 * @return A boolean representing the success of the query.
 	 *
 	 * @throws SQLException
+	 * 		If query fails.
 	 */
 	static boolean insertEmployee(Employee e) throws SQLException
 	{
 		return insertEmployeeAtId(e, null);
 	}
 	/**
-	 * @param e
-	 * @param id
+	 * Inserts {@link Employee} object into the SQLite database at a specified ID.
 	 *
-	 * @return
+	 * @param e
+	 * 		The {@link Employee} object to insert.
+	 * @param id
+	 * 		The {@link Employee#id ID} to insert the {@link Employee} at.
+	 *
+	 * @return A boolean representing the success of the query.
 	 *
 	 * @throws SQLException
+	 * 		If query fails.
 	 */
 	static boolean insertEmployeeAtId(Employee e, String id) throws SQLException
 	{
 		PreparedStatement s;
-		if(id == null) {
+		if(id != null) {
 			s = c.prepareStatement("INSERT INTO employees VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			s.setString(1, id);
 		}
 		else {
 			s = c.prepareStatement("INSERT INTO employees (Name, Gender, DOB, Address, Postcode, NIN, JobTitle, StartDate, Salary, Email, Image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
-		int offset = (id == null) ? 0 : 1;
-		s.setString(1 + offset, id);
-		s.setString(2 + offset, e.getName());
-		s.setString(3 + offset, String.valueOf(e.getGender()));
-		s.setString(4 + offset, e.getDob());
-		s.setString(5 + offset, e.getAddress());
-		s.setString(6 + offset, e.getPostcode());
-		s.setString(7 + offset, e.getNatInscNo());
-		s.setString(8 + offset, e.getTitle());
-		s.setString(9 + offset, e.getStartDate());
-		s.setString(10 + offset, e.getSalary());
-		s.setString(11 + offset, e.getEmail());
-		s.setBytes(12 + offset, convertImage(e.getImage()));
+		int offset = (id != null) ? 1 : 0;
+		s.setString(1 + offset, e.getName());
+		s.setString(2 + offset, String.valueOf(e.getGender()));
+		s.setString(3 + offset, e.getDob());
+		s.setString(4 + offset, e.getAddress());
+		s.setString(5 + offset, e.getPostcode());
+		s.setString(6 + offset, e.getNatInscNo());
+		s.setString(7 + offset, e.getTitle());
+		s.setString(8 + offset, e.getStartDate());
+		s.setString(9 + offset, e.getSalary());
+		s.setString(10 + offset, e.getEmail());
+		s.setBytes(11 + offset, convertImage(e.getImage()));
 		return s.execute();
 	}
 	/**
-	 * @param e
+	 * This function publishes an updated employee to the SQLite database.
 	 *
-	 * @return
+	 * @param e
+	 * 		The employee to update.
+	 *
+	 * @return A boolean representing the success of the query.
 	 *
 	 * @throws SQLException
+	 * 		If query fails.
 	 */
 	static int updateEmployee(Employee e) throws SQLException
 	{
@@ -183,11 +215,15 @@ class EmployeeDAO
 		return s.executeUpdate();
 	}
 	/**
-	 * @param id
+	 * Deletes an employee from the SQLite database that has the {@link Employee#id ID} passed in the parameter.
 	 *
-	 * @return
+	 * @param id
+	 * 		The {@link Employee#id ID} of the employee to delete.
+	 *
+	 * @return A boolean representing the success of the query.
 	 *
 	 * @throws SQLException
+	 * 		If query fails.
 	 */
 	static boolean deleteEmployeeById(String id) throws SQLException
 	{
@@ -196,9 +232,12 @@ class EmployeeDAO
 		return s.executeUpdate() > 0;
 	}
 	/**
-	 * @param image
+	 * This function converts an image object to a byte array that can be stored in an SQLite database.
 	 *
-	 * @return
+	 * @param image
+	 * 		The image to be converted.
+	 *
+	 * @return The output byte array.
 	 */
 	private static byte[] convertImage(Image image)
 	{

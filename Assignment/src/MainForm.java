@@ -60,9 +60,6 @@ class MainForm extends JFrame
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK));
 		miNew.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -75,9 +72,6 @@ class MainForm extends JFrame
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, Event.CTRL_MASK));
 		miEdit.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -88,9 +82,6 @@ class MainForm extends JFrame
 		miRemove.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK));
 		miRemove.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -111,9 +102,6 @@ class MainForm extends JFrame
 		miQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, Event.ALT_MASK));
 		miQuit.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -130,17 +118,11 @@ class MainForm extends JFrame
 		miSearch.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK));
 		miSearch.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				SwingUtilities.invokeLater(new Runnable()
 				{
-					/**
-					 *
-					 */
 					@Override
 					public void run()
 					{
@@ -157,9 +139,6 @@ class MainForm extends JFrame
 		miDisplay.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK));
 		miDisplay.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -291,9 +270,6 @@ class MainForm extends JFrame
 		empCancel = new JButton("Cancel");
 		empCancel.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -309,9 +285,6 @@ class MainForm extends JFrame
 		empSave = new JButton("Save");
 		empSave.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -412,7 +385,7 @@ class MainForm extends JFrame
 						e1.setImage(tempEmployee.getImage());
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Please fill out all fields correctly.");
+						JOptionPane.showMessageDialog(null, "Please add an image.");
 						return;
 					}
 					try {
@@ -445,9 +418,6 @@ class MainForm extends JFrame
 		prevEmp = new JButton("Previous");
 		prevEmp.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -462,9 +432,6 @@ class MainForm extends JFrame
 		nextEmp = new JButton("Next");
 		nextEmp.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -483,9 +450,6 @@ class MainForm extends JFrame
 		empImage = new JLabel("", SwingConstants.CENTER);
 		empImage.addMouseListener(new MouseListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
@@ -493,11 +457,6 @@ class MainForm extends JFrame
 					FileDialog fileDialog = new FileDialog(MainForm.this, "Select Image", FileDialog.LOAD);
 					fileDialog.setFilenameFilter(new FilenameFilter()
 					{
-						/**
-						 * @param dir
-						 * @param name
-						 * @return
-						 */
 						@Override
 						public boolean accept(File dir, String name)
 						{

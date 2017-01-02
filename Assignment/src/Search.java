@@ -16,7 +16,7 @@ class Search extends JFrame
 	private static final int labelWidth = 50;
 	private static final int labelHeight = 28;
 	/**
-	 *
+	 * The {@link Search} constructor initialises the GUI window and calls the {@link Search#drawGUI()} function.
 	 */
 	Search()
 	{
@@ -26,7 +26,8 @@ class Search extends JFrame
 		drawGUI();
 	}
 	/**
-	 *
+	 * Draws each GUI element by first initialising the component, then it sets its properties including the elements
+	 * boundaries, next it adds any relevant action listeners, before finally adding the element to the GUI.
 	 */
 	private void drawGUI()
 	{
@@ -38,9 +39,6 @@ class Search extends JFrame
 		search = new JTextField();
 		search.addKeyListener(new KeyListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void keyTyped(KeyEvent e)
 			{
@@ -55,9 +53,13 @@ class Search extends JFrame
 				results.setListData(matches.toArray());
 			}
 			@Override
-			public void keyPressed(KeyEvent e) {}
+			public void keyPressed(KeyEvent e)
+			{
+			}
 			@Override
-			public void keyReleased(KeyEvent e) {}
+			public void keyReleased(KeyEvent e)
+			{
+			}
 		});
 		search.setBounds(xPad + labelWidth, yPad + (labelHeight * row), 200 - labelWidth, labelHeight);
 		add(search);
@@ -72,9 +74,6 @@ class Search extends JFrame
 		JButton select = new JButton("Select");
 		select.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -90,9 +89,6 @@ class Search extends JFrame
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(new ActionListener()
 		{
-			/**
-			 *
-			 */
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
