@@ -1,5 +1,9 @@
 /**
+ * The {@link Person} class is used to store details about an individual people stored within the system. It works very
+ * similarly to a model in the MVC design pattern.
+ *
  * @author Elliot Lewis
+ * @version 1.0
  */
 class Person
 {
@@ -8,12 +12,15 @@ class Person
 	/**
 	 * Constructor for the {@link Person} class.
 	 */
-	Person() {}
+	Person()
+	{
+	}
 	/**
 	 * Constructor allowing the cloning of another {@link Person person}. It sets all of the {@link Person person}'s
 	 * properties to the ones of the {@link Person person} passed in through the {@link Person} parameter.
 	 *
-	 * @param p {@link Person} object to clone.
+	 * @param p
+	 * 		{@link Person} object to clone.
 	 */
 	Person(Person p)
 	{
@@ -36,7 +43,8 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s name.
 	 *
-	 * @param name {@link Person}'s new name.
+	 * @param name
+	 * 		{@link Person}'s new name.
 	 */
 	void setName(String name)
 	{
@@ -54,7 +62,8 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s gender.
 	 *
-	 * @param gender {@link Person}'s new gender.
+	 * @param gender
+	 * 		{@link Person}'s new gender.
 	 */
 	void setGender(char gender)
 	{
@@ -72,7 +81,8 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s national insurance number.
 	 *
-	 * @param natInscNo {@link Person}'s new national insurance number.
+	 * @param natInscNo
+	 * 		{@link Person}'s new national insurance number.
 	 */
 	void setNatInscNo(String natInscNo)
 	{
@@ -90,7 +100,8 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s date of birth.
 	 *
-	 * @param dob {@link Person}'s new date of birth.
+	 * @param dob
+	 * 		{@link Person}'s new date of birth.
 	 */
 	void setDob(String dob)
 	{
@@ -108,7 +119,8 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s address.
 	 *
-	 * @param address {@link Person}'s new address.
+	 * @param address
+	 * 		{@link Person}'s new address.
 	 */
 	void setAddress(String address)
 	{
@@ -126,7 +138,8 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s postcode.
 	 *
-	 * @param postcode {@link Person}'s new postcode.
+	 * @param postcode
+	 * 		{@link Person}'s new postcode.
 	 */
 	void setPostcode(String postcode)
 	{

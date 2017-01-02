@@ -1,6 +1,10 @@
 import java.awt.*;
 /**
+ * The {@link Employee} class is used to store details about an individual employee in the system. It works very
+ * similarly to a model in the MVC design pattern.
+ *
  * @author Elliot Lewis
+ * @version 1.0
  */
 class Employee extends Person
 {
@@ -18,7 +22,8 @@ class Employee extends Person
 	 * constructor} of the super class and then sets all of the {@link Employee employee}'s properties to the ones of
 	 * the {@link Employee employee} passed in through the {@link Employee} parameter.
 	 *
-	 * @param e {@link Employee} object to clone.
+	 * @param e
+	 * 		{@link Employee} object to clone.
 	 */
 	Employee(Employee e)
 	{
@@ -42,7 +47,8 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s email address.
 	 *
-	 * @param email {@link Employee}'s new email address.
+	 * @param email
+	 * 		{@link Employee}'s new email address.
 	 */
 	void setEmail(String email)
 	{
@@ -60,7 +66,8 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s job title.
 	 *
-	 * @param title {@link Employee}'s new job title.
+	 * @param title
+	 * 		{@link Employee}'s new job title.
 	 */
 	void setTitle(String title)
 	{
@@ -78,7 +85,8 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s ID.
 	 *
-	 * @param id {@link Employee}'s new ID.
+	 * @param id
+	 * 		{@link Employee}'s new ID.
 	 */
 	void setId(String id)
 	{
@@ -96,7 +104,8 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s salary.
 	 *
-	 * @param salary {@link Employee}'s new salary.
+	 * @param salary
+	 * 		{@link Employee}'s new salary.
 	 */
 	void setSalary(String salary)
 	{
@@ -114,7 +123,8 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s start date.
 	 *
-	 * @param startDate {@link Employee}'s new start date.
+	 * @param startDate
+	 * 		{@link Employee}'s new start date.
 	 */
 	void setStartDate(String startDate)
 	{
@@ -132,7 +142,8 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s image.
 	 *
-	 * @param image {@link Employee}'s new image.
+	 * @param image
+	 * 		{@link Employee}'s new image.
 	 */
 	void setImage(Image image)
 	{

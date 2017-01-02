@@ -10,6 +10,7 @@ import javax.swing.*;
  * data need to be created, retrieved, updated and deleted from the database.
  *
  * @author Elliot Lewis
+ * @version 1.0
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 class EmployeeDAO

@@ -6,6 +6,7 @@ import java.util.*;
  * through the employees by their name.
  *
  * @author Elliot Lewis
+ * @version 1.0
  */
 class Search extends JFrame
 {

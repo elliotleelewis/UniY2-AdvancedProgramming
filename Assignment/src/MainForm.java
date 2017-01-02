@@ -6,7 +6,12 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 /**
+ * The {@link MainForm} class is the class that controls the main GUI screen and its functions. It handles most of the
+ * functionality and interactivity of the application, including features such as browsing through the employees and
+ * editing their details, as well as creating new employees and removing existing ones.
+ *
  * @author Elliot Lewis
+ * @version 1.0
  */
 class MainForm extends JFrame
 {
@@ -26,7 +31,11 @@ class MainForm extends JFrame
 	private static final int maxImageWidth = 150;
 	private static final int maxImageHeight = labelHeight * 9;
 	/**
+	 * The constructor initialises the GUI, grabs all the employees from the database through the use of the {@link
+	 * EmployeeDAO#selectAllEmployees()} function, and then calls the {@link #drawGUI()} function.
+	 *
 	 * @throws SQLException
+	 * 		If unable to either select all the employees or draw the GUI.
 	 */
 	MainForm() throws SQLException
 	{
@@ -38,9 +47,10 @@ class MainForm extends JFrame
 		drawGUI();
 	}
 	/**
-	 * @throws SQLException
+	 * Draws each GUI element by first initialising the component, then it sets its properties including the elements
+	 * boundaries, next it adds any relevant action listeners, before finally adding the element to the GUI.
 	 */
-	private void drawGUI() throws SQLException
+	private void drawGUI()
 	{
 		String[] days = new String[31];
 		String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
@@ -485,13 +495,21 @@ class MainForm extends JFrame
 				}
 			}
 			@Override
-			public void mousePressed(MouseEvent e) {}
+			public void mousePressed(MouseEvent e)
+			{
+			}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e)
+			{
+			}
 			@Override
-			public void mouseEntered(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e)
+			{
+			}
 			@Override
-			public void mouseExited(MouseEvent e) {}
+			public void mouseExited(MouseEvent e)
+			{
+			}
 		});
 		empImage.setCursor(Cursor.getDefaultCursor());
 		empImage.setBounds(xPad + labelWidth + 250, yPad + labelHeight, maxImageWidth, maxImageHeight);
@@ -499,7 +517,7 @@ class MainForm extends JFrame
 		loadEmployee();
 	}
 	/**
-	 *
+	 * Loads the details of the {@link #selectedEmployee} into the application.
 	 */
 	private static void loadEmployee()
 	{
@@ -595,7 +613,8 @@ class MainForm extends JFrame
 		}
 	}
 	/**
-	 *
+	 * Selects the next employee in the {@link #employees} ArrayList and then calls the {@link #loadEmployee()} function
+	 * to load it into the GUI.
 	 */
 	private static void loadNextEmployee()
 	{
@@ -607,7 +626,8 @@ class MainForm extends JFrame
 		loadEmployee();
 	}
 	/**
-	 *
+	 * Selects the previous employee in the {@link #employees} ArrayList and then calls the {@link #loadEmployee()}
+	 * function to load it into the GUI.
 	 */
 	private static void loadPrevEmployee()
 	{
@@ -619,9 +639,13 @@ class MainForm extends JFrame
 		loadEmployee();
 	}
 	/**
+	 * Refreshes the employees ArrayList and then possibly reloads/resets the selected employee.
+	 *
 	 * @param reloadSelectedEmployee
+	 * 		If true, the selected employee is reloaded/reset.
 	 *
 	 * @throws SQLException
+	 * 		If {@link EmployeeDAO#selectAllEmployees()} query fails.
 	 */
 	private static void refreshEmployees(boolean reloadSelectedEmployee) throws SQLException
 	{
@@ -632,28 +656,37 @@ class MainForm extends JFrame
 		}
 	}
 	/**
-	 * @return
+	 * Gets the ArrayList of {@link #employees}.
+	 *
+	 * @return ArrayList of {@link #employees}.
 	 */
 	static ArrayList<Employee> getEmployees()
 	{
 		return employees;
 	}
 	/**
-	 * @return
+	 * Gets the number of {@link #employees}.
+	 *
+	 * @return Number of {@link #employees}.
 	 */
 	static int getEmployeeCount()
 	{
 		return employees.size();
 	}
 	/**
-	 * @return
+	 * Gets the {@link #selectedEmployee}.
+	 *
+	 * @return {@link #selectedEmployee}.
 	 */
 	static Employee getSelectedEmployee()
 	{
 		return selectedEmployee;
 	}
 	/**
+	 * Sets the {@link #selectedEmployee} to the one passed in, and then calls the {@link #loadEmployee()} function.
+	 *
 	 * @param employee
+	 * 		Employee to select.
 	 */
 	static void setSelectedEmployee(Employee employee)
 	{
@@ -661,7 +694,10 @@ class MainForm extends JFrame
 		loadEmployee();
 	}
 	/**
+	 * Sets the selected employee to the one in the {@link #employees} ArrayList at the index passed into the function.
+	 *
 	 * @param index
+	 * 		Index of employee to select.
 	 */
 	static void setSelectedEmployeeIndex(int index)
 	{
@@ -669,9 +705,9 @@ class MainForm extends JFrame
 		setSelectedEmployee(getEmployees().get(selectedEmployeeIndex));
 	}
 	/**
-	 *
+	 * Sets the state of the GUI to allow the user to edit the currently selected employee.
 	 */
-	static void setEditable()
+	private static void setEditable()
 	{
 		editable = true;
 		tempEmployee = new Employee(selectedEmployee);
@@ -683,9 +719,9 @@ class MainForm extends JFrame
 		refreshEditState();
 	}
 	/**
-	 *
+	 * Sets the state of the GUI to prevent the user from editing the currently selected employee.
 	 */
-	static void setUneditable()
+	private static void setUneditable()
 	{
 		editable = false;
 		tempEmployee = null;
@@ -696,7 +732,7 @@ class MainForm extends JFrame
 		refreshEditState();
 	}
 	/**
-	 *
+	 * Refreshes the editable state of each of the GUI elements.
 	 */
 	private static void refreshEditState()
 	{
@@ -725,9 +761,14 @@ class MainForm extends JFrame
 		nextEmp.setVisible(!editable);
 	}
 	/**
-	 * @param image
+	 * Scales the image to the largest possible size that will fit within the {@link #maxImageWidth} and {@link
+	 * #maxImageHeight} variables without overlapping the boundaries. Does something similar to the CSS property,
+	 * "background-size: contain".
 	 *
-	 * @return
+	 * @param image
+	 * 		Image to scale.
+	 *
+	 * @return Scaled image.
 	 */
 	private static ImageIcon getScaledIcon(Image image)
 	{

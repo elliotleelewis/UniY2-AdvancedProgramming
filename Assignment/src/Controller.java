@@ -11,6 +11,9 @@ public class Controller
 	/**
 	 * The main method is run when the program is launched. It sets the properties and look and feel of the application,
 	 * as well as initialising the {@link EmployeeDAO} class and finally, launching the main form.
+	 *
+	 * @param args
+	 * 		Program arguments. Needed for main method but unused by application.
 	 */
 	public static void main(String[] args)
 	{
