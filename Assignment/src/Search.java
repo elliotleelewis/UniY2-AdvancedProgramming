@@ -12,6 +12,7 @@ class Search extends JFrame
 {
 	private static JTextField search;
 	private static JList results;
+	private static JButton select;
 	private static final int xPad = 10;
 	private static final int yPad = 10;
 	private static final int labelWidth = 50;
@@ -51,6 +52,7 @@ class Search extends JFrame
 						matches.add(emp);
 					}
 				}
+				select.setEnabled(query.length() == -1);
 				results.setListData(matches.toArray());
 			}
 			@Override
@@ -72,7 +74,7 @@ class Search extends JFrame
 		add(results);
 		// Select Button
 		row += 6;
-		JButton select = new JButton("Select");
+		select = new JButton("Select");
 		select.addActionListener(new ActionListener()
 		{
 			@Override
