@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.event.*;
 import java.awt.event.*;
 import java.util.*;
 /**
@@ -52,7 +53,6 @@ class Search extends JFrame
 						matches.add(emp);
 					}
 				}
-				select.setEnabled(query.length() == -1);
 				results.setListData(matches.toArray());
 			}
 			@Override
@@ -70,6 +70,19 @@ class Search extends JFrame
 		row++;
 		results = new JList();
 		results.setListData(MainForm.getEmployees().toArray());
+		results.addListSelectionListener(new ListSelectionListener()
+		{
+			@Override
+			public void valueChanged(ListSelectionEvent e)
+			{
+				if(results.getSelectedIndex() >= 0) {
+					select.setEnabled(true);
+				}
+				else {
+					select.setEnabled(false);
+				}
+			}
+		});
 		results.setBounds(xPad, yPad + (labelHeight * row), 200, labelHeight * 6);
 		add(results);
 		// Select Button
@@ -87,6 +100,7 @@ class Search extends JFrame
 			}
 		});
 		select.setBounds(xPad, yPad + (labelHeight * row), 100, labelHeight);
+		select.setEnabled(false);
 		add(select);
 		// Cancel Button
 		JButton cancel = new JButton("Cancel");
