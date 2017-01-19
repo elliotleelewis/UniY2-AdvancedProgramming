@@ -7,7 +7,7 @@ public class Motorbike extends Vehicle
 {
 	/**
 	 * Constructor calls constructor of super class
-	 * @param age
+	 * @param age age of motorbike
 	 */
 	public Motorbike(int age)
 	{

@@ -8,7 +8,7 @@ public abstract class Vehicle
 	private int age;
 	/**
 	 * Constructor of abstract class allows instances of child classes to define the age parameter of this object
-	 * @param age
+	 * @param age age of vehicle
 	 */
 	public Vehicle(int age)
 	{

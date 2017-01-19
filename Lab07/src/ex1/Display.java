@@ -30,7 +30,7 @@ public class Display extends JFrame
 			public void run()
 			{
 				Display d = new Display();
-				d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				d.setSize(600, 400);
 				d.setVisible(true);
 			}

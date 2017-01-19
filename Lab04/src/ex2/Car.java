@@ -7,7 +7,7 @@ public class Car extends Vehicle
 {
 	/**
 	 * Constructor calls constructor of super class
-	 * @param age
+	 * @param age age of car
 	 */
 	public Car(int age)
 	{
