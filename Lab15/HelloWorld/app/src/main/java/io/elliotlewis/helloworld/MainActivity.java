@@ -35,16 +35,15 @@ public class MainActivity extends AppCompatActivity
 	}
 	private void updateColor(View v)
 	{
+		int color = Color.WHITE;
 		switch(bgColor) {
-			case 0:
-				this.getWindow().getDecorView().getRootView().setBackgroundColor(Color.WHITE);
-				break;
 			case 1:
-				this.getWindow().getDecorView().getRootView().setBackgroundColor(Color.RED);
+				color = Color.RED;
 				break;
 			case 2:
-				this.getWindow().getDecorView().getRootView().setBackgroundColor(Color.BLUE);
+				color = Color.BLUE;
 				break;
 		}
+		v.getRootView().setBackgroundColor(color);
 	}
 }
