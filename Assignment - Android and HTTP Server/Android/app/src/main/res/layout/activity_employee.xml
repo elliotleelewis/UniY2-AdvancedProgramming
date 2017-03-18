@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="io.elliotlewis.employeedatabase.EmployeeActivity">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="16dp">
+
+		<TextView
+			android:id="@+id/employee_name_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:labelFor="@+id/employee_name"
+			android:text="@string/name_label"/>
+
+		<TextView
+			android:id="@+id/employee_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_name_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_gender_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_name"
+			android:labelFor="@+id/employee_gender"
+			android:text="@string/gender_label"/>
+
+		<TextView
+			android:id="@+id/employee_gender"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_gender_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_nat_insc_no_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_gender"
+			android:labelFor="@+id/employee_nat_insc_no"
+			android:text="@string/nat_insc_no_label"/>
+
+		<TextView
+			android:id="@+id/employee_nat_insc_no"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_nat_insc_no_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_dob_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_nat_insc_no"
+			android:labelFor="@+id/employee_dob"
+			android:text="@string/dob_label"/>
+
+		<TextView
+			android:id="@+id/employee_dob"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_dob_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_address_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_dob"
+			android:labelFor="@+id/employee_address"
+			android:text="@string/address_label"/>
+
+		<TextView
+			android:id="@+id/employee_address"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_address_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_postcode_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_address"
+			android:labelFor="@+id/employee_postcode"
+			android:text="@string/postcode_label"/>
+
+		<TextView
+			android:id="@+id/employee_postcode"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_postcode_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_email_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_postcode"
+			android:labelFor="@+id/employee_email"
+			android:text="@string/email_label"/>
+
+		<TextView
+			android:id="@+id/employee_email"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_email_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_title_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_email"
+			android:labelFor="@+id/employee_title"
+			android:text="@string/title_label"/>
+
+		<TextView
+			android:id="@+id/employee_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_title_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_id_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_title"
+			android:labelFor="@+id/employee_id"
+			android:text="@string/id_label"/>
+
+		<TextView
+			android:id="@+id/employee_id"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_id_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_salary_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_id"
+			android:labelFor="@+id/employee_salary"
+			android:text="@string/salary_label"/>
+
+		<TextView
+			android:id="@+id/employee_salary"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_salary_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+
+		<TextView
+			android:id="@+id/employee_start_date_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_salary"
+			android:labelFor="@+id/employee_start_date"
+			android:text="@string/start_date_label"/>
+
+		<TextView
+			android:id="@+id/employee_start_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/employee_start_date_label"
+			android:textColor="@color/colorTextDark"
+			android:textSize="24sp"/>
+	</RelativeLayout>
+</ScrollView>

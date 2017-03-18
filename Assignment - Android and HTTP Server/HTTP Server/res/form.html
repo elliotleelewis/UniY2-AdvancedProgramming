@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Employee Database</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+	<style>
+		body {
+			display: flex;
+			width: 100vw;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+			background-color: #EEE;
+		}
+		.card {
+			width: 500px;
+			max-width: calc(100% - 50px);
+			margin: 25px;
+			flex: 0 0 auto;
+		}
+		.card-block {
+			display: flex;
+			flex-direction: column;
+		}
+		button {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="card">
+		<form class="card-block" action="/insert-html" method="POST">
+			<h4 class="card-title">Add Employee</h4>
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input id="name" class="form-control" type="text" name="name" pattern="[a-zA-Z-'\s]+" required/>
+			</div>
+			<div class="form-group">
+				<label>Gender:</label>
+				<div>
+					<div class="form-check form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" name="gender" value="M" required/>
+							Male
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" name="gender" value="F" required/>
+							Female
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dob">Date of Birth:</label>
+				<input id="dob" class="form-control" type="date" name="dob" required/>
+			</div>
+			<div class="form-group">
+				<label for="address">Address:</label>
+				<input id="address" class="form-control" type="text" name="address" pattern="[A-Za-z0-9-'\s]+" required/>
+			</div>
+			<div class="form-group">
+				<label for="postcode">Postcode:</label>
+				<input id="postcode" class="form-control" type="text" name="postcode" pattern="[A-Za-z0-9-'\s]+" required/>
+			</div>
+			<div class="form-group">
+				<label for="natInscNo">National Insurance Number:</label>
+				<input id="natInscNo" class="form-control" type="text" name="natInscNo" pattern="^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$" required style="text-transform: uppercase;"/>
+			</div>
+			<div class="form-group">
+				<label for="jobTitle">Job Title:</label>
+				<input id="jobTitle" class="form-control" type="text" name="title" pattern="[A-Za-z0-9-'\s]+" required/>
+			</div>
+			<div class="form-group">
+				<label for="startDate">Start Date:</label>
+				<input id="startDate" class="form-control" type="date" name="startDate" required/>
+			</div>
+			<div class="form-group">
+				<label for="salary">Salary:</label>
+				<div class="input-group">
+					<div class="input-group-addon">£</div>
+					<input id="salary" class="form-control" type="number" min="0" value="0" step="100" name="salary" required/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input id="email" class="form-control" type="email" name="email" required/>
+			</div>
+			<button class="btn btn-primary" type="submit">Submit</button>
+		</form>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var urlParams = decodeURIComponent(location.search.substring(1));
+			var paramsArray = urlParams.split("&");
+			var params = {};
+			for(var i = 0; i < paramsArray.length; i++) {
+				var param = paramsArray[i].split("=");
+				// XSS Prevention
+				for(var j = 0; j < param.length; j++) {
+					const entityMap = {
+						'&': '&amp;',
+						'<': '&lt;',
+						'>': '&gt;',
+						'"': '&quot;',
+						"'": '&#39;',
+						'/': '&#x2F;',
+						'`': '&#x60;',
+						'=': '&#x3D;'
+					};
+					param[j] = param[j].replace(/[&<>"'`=\/]/g, function(s) {
+						return entityMap[s];
+					});
+				}
+				params[param[0]] = param[1];
+			}
+			if(params.state === "success") {
+				$('.card-title').after('<div class="alert alert-success"><strong>Success!</strong> Employee added: ' + params.employee + '</div>');
+			}
+			else if(params.state === "error") {
+				$('.card-title').after('<div class="alert alert-danger"><strong>Error!</strong> Unable to add employee.</div>');
+			}
+		});
+	</script>
+</body>
+</html>
