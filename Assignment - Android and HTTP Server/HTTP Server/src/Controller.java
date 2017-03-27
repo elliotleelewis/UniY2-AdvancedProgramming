@@ -61,11 +61,11 @@ public class Controller
 				try {
 					BufferedReader in = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()));
 					String line;
-					String request = "";
+					StringBuilder request = new StringBuilder();
 					while((line = in.readLine()) != null) {
-						request = request + line;
+						request.append(line);
 					}
-					String[] params = URLDecoder.decode(request, "UTF-8").split("&");
+					String[] params = URLDecoder.decode(request.toString(), "UTF-8").split("&");
 					String id = null;
 					for(String param : params) {
 						String[] keyValue = param.split("=");
@@ -88,16 +88,49 @@ public class Controller
 					e.printStackTrace();
 				}
 			});
+			// Delete Employee
+			server.createContext("/delete", httpExchange -> {
+				try {
+					BufferedReader in = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()));
+					String line;
+					StringBuilder request = new StringBuilder();
+					while((line = in.readLine()) != null) {
+						request.append(line);
+					}
+					String[] params = URLDecoder.decode(request.toString(), "UTF-8").split("&");
+					String id = null;
+					for(String param : params) {
+						String[] keyValue = param.split("=");
+						if(keyValue[0].equals("id")) {
+							id = keyValue[1];
+						}
+					}
+					if(EmployeeDAO.deleteEmployeeById(id)) {
+						httpExchange.sendResponseHeaders(200, 0);
+					}
+					else {
+						httpExchange.sendResponseHeaders(500, 0);
+					}
+					log(httpExchange, REQUEST, "Delete Employee: " + id);
+				}
+				catch(Exception e) {
+					httpExchange.sendResponseHeaders(500, 0);
+					BufferedWriter out = new BufferedWriter(new OutputStreamWriter(httpExchange.getResponseBody()));
+					out.write("{\"state\"=\"error\"}");
+					out.close();
+					e.printStackTrace();
+				}
+			});
 			// Update Employee
 			server.createContext("/update", httpExchange -> {
 				try {
 					BufferedReader in = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()));
 					String line;
-					String request = "";
+					StringBuilder request = new StringBuilder();
 					while((line = in.readLine()) != null) {
-						request = request + line;
+						request.append(line);
 					}
-					Employee employee = gson.fromJson(URLDecoder.decode(request, "UTF-8"), Employee.class);
+					Employee employee = gson.fromJson(postToJson(request.toString()), Employee.class);
 					EmployeeDAO.updateEmployee(employee);
 					httpExchange.sendResponseHeaders(200, 0);
 					BufferedWriter out = new BufferedWriter(new OutputStreamWriter(httpExchange.getResponseBody()));
@@ -113,30 +146,26 @@ public class Controller
 					e.printStackTrace();
 				}
 			});
-			// Insert Employee from HTML Form
-			server.createContext("/insert-html", httpExchange -> {
+			// Insert Employee
+			server.createContext("/insert", httpExchange -> {
 				try {
 					BufferedReader in = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()));
 					String line;
-					String request = "";
+					StringBuilder request = new StringBuilder();
 					while((line = in.readLine()) != null) {
-						request = request + line;
+						request.append(line);
 					}
-					Employee employee = gson.fromJson(postToJson(request), Employee.class);
+					Employee employee = gson.fromJson(postToJson(request.toString()), Employee.class);
 					EmployeeDAO.insertEmployee(employee);
 					httpExchange.getResponseHeaders().set("Location", "/?state=success&employee=" + employee.getName());
 					httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_MOVED_TEMP, -1);
-					log(httpExchange, REQUEST, "Insert Employee: " + "TODO FIX THIS...");
+					log(httpExchange, REQUEST, "Insert Employee: " + employee.getName());
 				}
 				catch(Exception e) {
 					httpExchange.getResponseHeaders().set("Location", "/?state=error");
 					httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_MOVED_TEMP, -1);
 					e.printStackTrace();
 				}
-			});
-			// Insert Employee from Android
-			server.createContext("/insert", httpExchange -> {
-				//TODO
 			});
 			server.setExecutor(null);
 			server.start();
@@ -166,12 +195,11 @@ public class Controller
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, Charset.defaultCharset());
 	}
-	private static String postToJson(String postData) throws UnsupportedEncodingException
+	private static String postToJson(String post) throws UnsupportedEncodingException
 	{
-		String out = "{\"" + URLDecoder.decode(postData, "UTF-8") + "\"}";
+		String out = "{\"" + URLDecoder.decode(post, "UTF-8") + "\"}";
 		out = out.replace("&", "\",\"");
 		out = out.replace("=", "\":\"");
-		System.out.println("TEST: " + out);
 		return out;
 	}
 	private static void log(HttpExchange context, int type, String message)

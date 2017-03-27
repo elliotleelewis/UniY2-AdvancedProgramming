@@ -84,7 +84,26 @@ public class EmployeeActivity extends AppCompatActivity
 			@Override
 			public void onClick(DialogInterface dialog, int which)
 			{
-				finish();
+				new AsyncTask<String, Void, Void>()
+				{
+					@Override
+					protected Void doInBackground(String... params)
+					{
+						try {
+							EmployeeDAO.deleteEmployeeById(employee.getId());
+						}
+						catch(Exception e) {
+							e.printStackTrace();
+						}
+						return null;
+					}
+					@Override
+					protected void onPostExecute(Void response)
+					{
+						super.onPostExecute(response);
+						finish();
+					}
+				}.execute();
 			}
 		});
 		dialog.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()

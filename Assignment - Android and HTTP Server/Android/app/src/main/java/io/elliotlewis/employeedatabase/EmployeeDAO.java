@@ -68,6 +68,21 @@ class EmployeeDAO
 		String response = s.hasNext() ? s.next() : "";
 		return gson.fromJson(response, Employee.class);
 	}
+	static boolean deleteEmployeeById(String id) throws Exception
+	{
+		String address = getServerURL() + "/delete";
+		URL url = new URL(address);
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		urlConnection.setRequestMethod("POST");
+		urlConnection.setDoInput(true);
+		OutputStream os = urlConnection.getOutputStream();
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+		writer.write("id=" + id);
+		writer.flush();
+		writer.close();
+		os.close();
+		return urlConnection.getResponseCode() == 200;
+	}
 	static boolean updateEmployee(Employee employee) throws Exception
 	{
 		String address = getServerURL() + "/update";
@@ -77,7 +92,23 @@ class EmployeeDAO
 		urlConnection.setDoInput(true);
 		OutputStream os = urlConnection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-		writer.write(gson.toJson(employee));
+		writer.write(jsonToPost(gson.toJson(employee)));
+		writer.flush();
+		writer.close();
+		os.close();
+		Log.v(TAG, "Request sent: " + address);
+		return urlConnection.getResponseCode() == 200;
+	}
+	static boolean insertEmployee(Employee employee) throws Exception
+	{
+		String address = getServerURL() + "/insert";
+		URL url = new URL(address);
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		urlConnection.setRequestMethod("POST");
+		urlConnection.setDoInput(true);
+		OutputStream os = urlConnection.getOutputStream();
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+		writer.write(jsonToPost(gson.toJson(employee)));
 		writer.flush();
 		writer.close();
 		os.close();
@@ -90,5 +121,14 @@ class EmployeeDAO
 		SERVER_PORT = settings.getSetting("SERVER_PORT");
 		Log.v(TAG, SERVER_ADDRESS);
 		Log.v(TAG, String.valueOf(SERVER_PORT));
+	}
+	private static String jsonToPost(String json) throws Exception
+	{
+		String out = json.substring(1, json.length() - 1);
+		out = out.replace("\"", "");
+		out = out.replace(",", "&");
+		out = out.replace(":", "=");
+		out = URLEncoder.encode(out, "UTF-8");
+		return out;
 	}
 }

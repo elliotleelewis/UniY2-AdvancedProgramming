@@ -186,4 +186,5 @@
 			android:textColor="@color/colorTextDark"
 			android:textSize="24sp"/>
 	</RelativeLayout>
+
 </ScrollView>

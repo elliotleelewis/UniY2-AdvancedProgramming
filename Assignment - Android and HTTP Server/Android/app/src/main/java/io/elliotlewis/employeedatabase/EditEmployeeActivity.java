@@ -39,7 +39,7 @@ public class EditEmployeeActivity extends AppCompatActivity
 					{
 						String day = ((dayOfMonth <= 9) ? "0" : "") + dayOfMonth;
 						String month = (((monthOfYear + 1) <= 9) ? "0" : "") + (monthOfYear + 1);
-						String dob = day + "-" + month + "-" + year;
+						String dob = year + "-" + month + "-" + day;
 						tempEmployee.setDob(dob);
 						employeeDob.setText(dob);
 					}
@@ -63,7 +63,7 @@ public class EditEmployeeActivity extends AppCompatActivity
 					{
 						String day = ((dayOfMonth <= 9) ? "0" : "") + dayOfMonth;
 						String month = (((monthOfYear + 1) <= 9) ? "0" : "") + (monthOfYear + 1);
-						String startDate = day + "-" + month + "-" + year;
+						String startDate = year + "-" + month + "-" + day;
 						tempEmployee.setStartDate(startDate);
 						employeeStartDate.setText(startDate);
 					}
