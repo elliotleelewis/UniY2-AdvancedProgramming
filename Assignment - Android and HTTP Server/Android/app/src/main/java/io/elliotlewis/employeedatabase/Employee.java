@@ -4,10 +4,8 @@ import android.util.*;
 import java.io.*;
 import java.util.*;
 /**
- * Elliot Lewis © 2017
- * <p>
- * The {@link Employee} class is used to store details about an individual employee in the system. It works very
- * similarly to a model in the MVC design pattern.
+ * Elliot Lewis © 2017 <p> The {@link Employee} class is used to store details about an individual
+ * employee in the system. It works very similarly to a model in the MVC design pattern.
  *
  * @author Elliot Lewis
  * @version 1.0
@@ -16,19 +14,20 @@ class Employee extends Person implements Serializable
 {
 	private String email, title, id, salary, startDate;
 	/**
-	 * Constructor for the {@link Employee} class. It calls the {@link Person#Person() constructor} of the super class.
+	 * Constructor for the {@link Employee} class. It calls the {@link Person#Person() constructor}
+	 * of the super class.
 	 */
 	Employee()
 	{
 		super();
 	}
 	/**
-	 * Constructor allowing the cloning of another {@link Employee employee}. Calls the {@link Person#Person(Person)
-	 * constructor} of the super class and then sets all of the {@link Employee employee}'s properties to the ones of
-	 * the {@link Employee employee} passed in through the {@link Employee} parameter.
+	 * Constructor allowing the cloning of another {@link Employee employee}. Calls the {@link
+	 * Person#Person(Person) constructor} of the super class and then sets all of the {@link
+	 * Employee employee}'s properties to the ones of the {@link Employee employee} passed in
+	 * through the {@link Employee} parameter.
 	 *
-	 * @param e
-	 * 		{@link Employee} object to clone.
+	 * @param e {@link Employee} object to clone.
 	 */
 	Employee(Employee e)
 	{
@@ -133,7 +132,8 @@ class Employee extends Person implements Serializable
 	 * @return {@link Employee} object represented as an ArrayList.
 	 */
 	@Override
-	public ArrayList<Pair<String, String>> serialize() {
+	public ArrayList<Pair<String, String>> serialize()
+	{
 		ArrayList<Pair<String, String>> out = super.serialize();
 		out.add(new Pair<>("email", getEmail()));
 		out.add(new Pair<>("title", getTitle()));

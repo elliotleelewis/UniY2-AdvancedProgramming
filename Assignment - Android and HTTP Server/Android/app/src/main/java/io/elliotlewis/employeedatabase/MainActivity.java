@@ -11,6 +11,10 @@ public class MainActivity extends AppCompatActivity
 {
 	private final String TAG = "MainActivity";
 	private ArrayList<Employee> employees;
+	/**
+	 * Method runs when employee activity is loaded. It calls the #refreshData method and then sets
+	 * the click listener for each item in the list view.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -23,18 +27,25 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
+				// Start EmployeeActivity when clicked on employee in list view, pass that activity the correct Employee.
 				Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
 				intent.putExtra("employee", employees.get(position));
 				startActivity(intent);
 			}
 		});
 	}
+	/**
+	 * Calls the #refreshData method when the activity is resumed.
+	 */
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
 		refreshData();
 	}
+	/**
+	 * Sets the menu bar to use the "menu_main" menu layout.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -42,23 +53,33 @@ public class MainActivity extends AppCompatActivity
 		inflater.inflate(R.menu.menu_main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
+	/**
+	 * Controls what happens when a user clicks a button on the menu bar.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch(item.getItemId()) {
 			case R.id.action_add:
+				// Add button
 				startActivity(new Intent(getApplicationContext(), AddEmployeeActivity.class));
 				return true;
 			case R.id.action_refresh:
+				// Refresh Button
 				refreshData();
 				return true;
 			case R.id.action_settings:
+				// Settings Button
 				startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
+	/**
+	 * This method refreshes the data of the main activity. It also sets the loading spinner to show
+	 * whilst the AsyncTask is loading the data.
+	 */
 	private void refreshData()
 	{
 		findViewById(R.id.loading_wheel).setVisibility(View.VISIBLE);
@@ -85,6 +106,10 @@ public class MainActivity extends AppCompatActivity
 			}
 		}.execute();
 	}
+	/**
+	 * Loads the data into the main ListView. If there are no employees to load, then a warning is
+	 * posted in the console. The loading wheel is also hidden after the ListView is populated.
+	 */
 	private void refreshEmployees()
 	{
 		if(employees != null && employees.size() > 0) {

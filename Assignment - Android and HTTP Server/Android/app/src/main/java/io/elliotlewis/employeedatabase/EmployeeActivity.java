@@ -10,6 +10,12 @@ public class EmployeeActivity extends AppCompatActivity
 {
 	private final String TAG = "EmployeeActivity";
 	Employee employee;
+	/**
+	 * Method runs when employee activity is loaded. It sets the employee variable to equal the
+	 * one passed in the extras. It also sets the menu bar to show a back button, as well as
+	 * removing it's title. It also calls the #loadEmployeeIntoView method to load the employee's
+	 * details into the fields on the activity.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -22,6 +28,9 @@ public class EmployeeActivity extends AppCompatActivity
 		Log.v(TAG, "Employee details opened: " + employee.toString());
 		loadEmployeeIntoView();
 	}
+	/**
+	 * Refreshes the employee details when the activity is resumed using an AsyncTask.
+	 */
 	@Override
 	protected void onResume()
 	{
@@ -46,8 +55,10 @@ public class EmployeeActivity extends AppCompatActivity
 				loadEmployeeIntoView();
 			}
 		}.execute();
-		//TODO Reload employee.
 	}
+	/**
+	 * Sets the menu bar to use the "menu_employee" menu layout.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -55,17 +66,23 @@ public class EmployeeActivity extends AppCompatActivity
 		inflater.inflate(R.menu.menu_employee, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
+	/**
+	 * Controls what happens when a user clicks a button on the menu bar.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch(item.getItemId()) {
 			case android.R.id.home:
+				// Back button pressed
 				finish();
 				return true;
 			case R.id.action_delete:
+				// Deleted button pressed
 				promptDelete();
 				return true;
 			case R.id.action_edit:
+				// Edit button pressed
 				Intent intent = new Intent(getApplicationContext(), EditEmployeeActivity.class);
 				intent.putExtra("employee", employee);
 				startActivity(intent);
@@ -74,6 +91,10 @@ public class EmployeeActivity extends AppCompatActivity
 				return super.onOptionsItemSelected(item);
 		}
 	}
+	/**
+	 * Prompts the user if they want to delete the employee loaded into the activity. If they do,
+	 * call the EmployeeDAO#deleteEmployeeById method inside an AsyncTask.
+	 */
 	private void promptDelete()
 	{
 		AlertDialog.Builder dialog = new AlertDialog.Builder(EmployeeActivity.this);
@@ -116,6 +137,10 @@ public class EmployeeActivity extends AppCompatActivity
 		});
 		dialog.show();
 	}
+	/**
+	 * Sets all text fields in the activity to contain the employee details of the employee passed
+	 * in.
+	 */
 	private void loadEmployeeIntoView()
 	{
 		((TextView) findViewById(R.id.employee_name)).setText(employee.getName());

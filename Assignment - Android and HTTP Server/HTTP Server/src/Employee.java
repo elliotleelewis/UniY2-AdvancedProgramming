@@ -27,8 +27,7 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s email address.
 	 *
-	 * @param email
-	 * 		{@link Employee}'s new email address.
+	 * @param email {@link Employee}'s new email address.
 	 */
 	void setEmail(String email)
 	{
@@ -46,8 +45,7 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s job title.
 	 *
-	 * @param title
-	 * 		{@link Employee}'s new job title.
+	 * @param title {@link Employee}'s new job title.
 	 */
 	void setTitle(String title)
 	{
@@ -65,8 +63,7 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s ID.
 	 *
-	 * @param id
-	 * 		{@link Employee}'s new ID.
+	 * @param id {@link Employee}'s new ID.
 	 */
 	void setId(String id)
 	{
@@ -84,8 +81,7 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s salary.
 	 *
-	 * @param salary
-	 * 		{@link Employee}'s new salary.
+	 * @param salary {@link Employee}'s new salary.
 	 */
 	void setSalary(String salary)
 	{
@@ -103,8 +99,7 @@ class Employee extends Person
 	/**
 	 * Sets the {@link Employee employee}'s start date.
 	 *
-	 * @param startDate
-	 * 		{@link Employee}'s new start date.
+	 * @param startDate {@link Employee}'s new start date.
 	 */
 	void setStartDate(String startDate)
 	{

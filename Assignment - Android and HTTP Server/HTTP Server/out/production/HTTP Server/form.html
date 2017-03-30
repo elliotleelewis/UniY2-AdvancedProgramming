@@ -8,7 +8,7 @@
 	<style>
 		body {
 			display: flex;
-			width: 100vw;
+			width: 100%;
 			min-height: 100vh;
 			align-items: center;
 			justify-content: center;
@@ -26,6 +26,30 @@
 		}
 		button {
 			cursor: pointer;
+		}
+		.alert .close {
+			padding: 0;
+			top: initial;
+			right: initial;
+		}
+		noscript {
+			position: fixed;
+			display: flex;
+			width: 100%;
+			min-width: 320px;
+			height: 100%;
+			top: 0;
+			left: 0;
+			padding: 50px;
+			flex-direction: column;
+			justify-content: center;
+			background-color: black;
+			color: red;
+			text-align: center;
+			font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+		}
+		noscript > *:first-child {
+			font-weight: bold;
 		}
 	</style>
 </head>
@@ -92,6 +116,10 @@
 			<button class="btn btn-primary" type="submit">Submit</button>
 		</form>
 	</div>
+	<noscript>
+		<h1>Error</h1>
+		<h3>JavaScript is required to view this site</h3>
+	</noscript>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -119,10 +147,10 @@
 				params[param[0]] = param[1];
 			}
 			if(params.state === "success") {
-				$('.card-title').after('<div class="alert alert-success"><strong>Success!</strong> Employee added: ' + params.employee + '</div>');
+				$('.card-title').after('<div class="alert alert-success alert-dismissible fade show"><a href="/" class="close"><span>&times;</span></a><strong>Success!</strong> Employee added: ' + params.employee + '</div>');
 			}
 			else if(params.state === "error") {
-				$('.card-title').after('<div class="alert alert-danger"><strong>Error!</strong> Unable to add employee.</div>');
+				$('.card-title').after('<div class="alert alert-danger alert-dismissible fade show"><a href="/" class="close"><span>&times;</span></a><strong>Error!</strong> Unable to add employee.</div>');
 			}
 		});
 	</script>

@@ -8,7 +8,7 @@
 	<style>
 		body {
 			display: flex;
-			width: 100vw;
+			width: 100%;
 			min-height: 100vh;
 			align-items: center;
 			justify-content: center;
@@ -147,10 +147,10 @@
 				params[param[0]] = param[1];
 			}
 			if(params.state === "success") {
-				$('.card-title').after('<div class="alert alert-success alert-dismissible fade show"><a href="/" class="close" data-dismiss="alert"><span>&times;</span></a><strong>Success!</strong> Employee added: ' + params.employee + '</div>');
+				$('.card-title').after('<div class="alert alert-success alert-dismissible fade show"><a href="/" class="close"><span>&times;</span></a><strong>Success!</strong> Employee added: ' + params.employee + '</div>');
 			}
 			else if(params.state === "error") {
-				$('.card-title').after('<div class="alert alert-danger alert-dismissible fade show"><a href="/" class="close" data-dismiss="alert"><span>&times;</span></a><strong>Error!</strong> Unable to add employee.</div>');
+				$('.card-title').after('<div class="alert alert-danger alert-dismissible fade show"><a href="/" class="close"><span>&times;</span></a><strong>Error!</strong> Unable to add employee.</div>');
 			}
 		});
 	</script>

@@ -4,10 +4,8 @@ import android.util.*;
 import java.io.*;
 import java.util.*;
 /**
- * Elliot Lewis © 2017
- * <p>
- * The {@link Person} class is used to store details about an individual people stored within the system. It works very
- * similarly to a model in the MVC design pattern.
+ * Elliot Lewis © 2017 <p> The {@link Person} class is used to store details about an individual
+ * people stored within the system. It works very similarly to a model in the MVC design pattern.
  *
  * @author Elliot Lewis
  * @version 1.0
@@ -21,8 +19,9 @@ class Person implements Serializable
 	 */
 	Person() {}
 	/**
-	 * Constructor allowing the cloning of another {@link Person person}. It sets all of the {@link Person person}'s
-	 * properties to the ones of the {@link Person person} passed in through the {@link Person} parameter.
+	 * Constructor allowing the cloning of another {@link Person person}. It sets all of the {@link
+	 * Person person}'s properties to the ones of the {@link Person person} passed in through the
+	 * {@link Person} parameter.
 	 *
 	 * @param p {@link Person} object to clone.
 	 */
@@ -158,7 +157,8 @@ class Person implements Serializable
 		return out;
 	}
 	/**
-	 * @return {@link Person} object represented as a string. Specifically, their {@link Person#name name}.
+	 * @return {@link Person} object represented as a string. Specifically, their {@link Person#name
+	 * name}.
 	 */
 	public String toString()
 	{

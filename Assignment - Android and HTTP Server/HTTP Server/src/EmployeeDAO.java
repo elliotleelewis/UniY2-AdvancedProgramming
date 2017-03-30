@@ -38,8 +38,7 @@ class EmployeeDAO
 	/**
 	 * Attempts to close the connection to the SQLite database.
 	 *
-	 * @throws SQLException
-	 * 		If unable to close connection to the SQLite database.
+	 * @throws SQLException If unable to close connection to the SQLite database.
 	 */
 	static void closeConnection() throws SQLException
 	{
@@ -48,13 +47,9 @@ class EmployeeDAO
 	/**
 	 * Converts ResultSet query results to {@link Employee} object.
 	 *
-	 * @param res
-	 * 		ResultSet query results to convert.
-	 *
+	 * @param res ResultSet query results to convert.
 	 * @return Converted ResultSet.
-	 *
-	 * @throws SQLException
-	 * 		If column that's queried doesn't exist in the ResultSet.
+	 * @throws SQLException If column that's queried doesn't exist in the ResultSet.
 	 */
 	private static Employee convertEmployee(ResultSet res) throws SQLException
 	{
@@ -76,13 +71,9 @@ class EmployeeDAO
 	 * Converts a result set containing multiple employees, to an ArrayList containing {@link Employee} objects that
 	 * represent the multiple employees.
 	 *
-	 * @param res
-	 * 		The ResultSet to convert.
-	 *
+	 * @param res The ResultSet to convert.
 	 * @return The ArrayList of converted employees.
-	 *
-	 * @throws SQLException
-	 * 		If the result set fails to iterate.
+	 * @throws SQLException If the result set fails to iterate.
 	 */
 	private static ArrayList<Employee> convertEmployees(ResultSet res) throws SQLException
 	{
@@ -96,9 +87,7 @@ class EmployeeDAO
 	 * Selects all employees from the SQLite database.
 	 *
 	 * @return ArrayList containing {@link Employee} objects representing each database entity.
-	 *
-	 * @throws SQLException
-	 * 		If the query fails.
+	 * @throws SQLException If the query fails.
 	 */
 	static ArrayList<Employee> showAllRecords() throws SQLException
 	{
@@ -116,13 +105,9 @@ class EmployeeDAO
 	/**
 	 * Inserts {@link Employee} object into the SQLite database.
 	 *
-	 * @param e
-	 * 		The {@link Employee} object to insert.
-	 *
+	 * @param e The {@link Employee} object to insert.
 	 * @return A boolean representing the success of the query.
-	 *
-	 * @throws SQLException
-	 * 		If query fails.
+	 * @throws SQLException If query fails.
 	 */
 	static boolean insertEmployee(Employee e) throws SQLException
 	{
@@ -142,13 +127,9 @@ class EmployeeDAO
 	/**
 	 * This function publishes an updated employee to the SQLite database.
 	 *
-	 * @param e
-	 * 		The employee to update.
-	 *
+	 * @param e The employee to update.
 	 * @return A boolean representing the success of the query.
-	 *
-	 * @throws SQLException
-	 * 		If query fails.
+	 * @throws SQLException If query fails.
 	 */
 	static int updateEmployee(Employee e) throws SQLException
 	{
@@ -169,13 +150,9 @@ class EmployeeDAO
 	/**
 	 * Deletes an employee from the SQLite database that has the {@link Employee#id ID} passed in the parameter.
 	 *
-	 * @param id
-	 * 		The {@link Employee#id ID} of the employee to delete.
-	 *
+	 * @param id The {@link Employee#id ID} of the employee to delete.
 	 * @return A boolean representing the success of the query.
-	 *
-	 * @throws SQLException
-	 * 		If query fails.
+	 * @throws SQLException If query fails.
 	 */
 	static boolean deleteEmployeeById(String id) throws SQLException
 	{

@@ -7,6 +7,11 @@ import android.view.*;
 import android.widget.*;
 public class SettingsActivity extends AppCompatActivity
 {
+	/**
+	 * Method runs when settings activity is loaded. It sets the menu bar to show a back button, as
+	 * well as settings it's correct title. It also sets the details loaded into the activity to be
+	 * the correct ones from the persistent storage.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -17,6 +22,9 @@ public class SettingsActivity extends AppCompatActivity
 		((EditText) findViewById(R.id.server_address)).setText(EmployeeDAO.getServerAddress());
 		((EditText) findViewById(R.id.server_port)).setText(EmployeeDAO.getServerPort());
 	}
+	/**
+	 * Sets the menu bar to use the "menu_save" menu layout.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -24,25 +32,36 @@ public class SettingsActivity extends AppCompatActivity
 		inflater.inflate(R.menu.menu_save, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
+	/**
+	 * Controls what happens when a user clicks a button on the menu bar.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch(item.getItemId()) {
 			case android.R.id.home:
+				// Back button
 				promptCancel();
 				return true;
 			case R.id.action_save:
+				// Save button
 				promptSave();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
+	/**
+	 * Makes the back button call the #promptCancel method.
+	 */
 	@Override
 	public void onBackPressed()
 	{
 		promptCancel();
 	}
+	/**
+	 * Prompts the user if they want to cancel editing the settings and discard their progress.
+	 */
 	private void promptCancel()
 	{
 		AlertDialog.Builder dialog = new AlertDialog.Builder(SettingsActivity.this);
@@ -66,6 +85,10 @@ public class SettingsActivity extends AppCompatActivity
 		});
 		dialog.show();
 	}
+	/**
+	 * Prompts the user if they want to save their changes to the settings. And if they do, call the
+	 * EmployeeDAO#updateSettings method.
+	 */
 	private void promptSave()
 	{
 		AlertDialog.Builder dialog = new AlertDialog.Builder(SettingsActivity.this);

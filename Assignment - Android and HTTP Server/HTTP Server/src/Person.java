@@ -25,12 +25,12 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s name.
 	 *
-	 * @param name
-	 * 		{@link Person}'s new name.
+	 * @param name {@link Person}'s new name.
 	 */
 	void setName(String name)
 	{
-		if(name != null) this.name = name;
+		if(name != null)
+			this.name = name;
 	}
 	/**
 	 * Gets the {@link Person employee}'s gender.
@@ -44,8 +44,7 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s gender.
 	 *
-	 * @param gender
-	 * 		{@link Person}'s new gender.
+	 * @param gender {@link Person}'s new gender.
 	 */
 	void setGender(char gender)
 	{
@@ -63,12 +62,12 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s national insurance number.
 	 *
-	 * @param natInscNo
-	 * 		{@link Person}'s new national insurance number.
+	 * @param natInscNo {@link Person}'s new national insurance number.
 	 */
 	void setNatInscNo(String natInscNo)
 	{
-		if(natInscNo != null) this.natInscNo = natInscNo;
+		if(natInscNo != null)
+			this.natInscNo = natInscNo;
 	}
 	/**
 	 * Gets the {@link Person employee}'s date of birth.
@@ -82,12 +81,12 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s date of birth.
 	 *
-	 * @param dob
-	 * 		{@link Person}'s new date of birth.
+	 * @param dob {@link Person}'s new date of birth.
 	 */
 	void setDob(String dob)
 	{
-		if(dob != null) this.dob = dob;
+		if(dob != null)
+			this.dob = dob;
 	}
 	/**
 	 * Gets the {@link Person employee}'s address.
@@ -101,12 +100,12 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s address.
 	 *
-	 * @param address
-	 * 		{@link Person}'s new address.
+	 * @param address {@link Person}'s new address.
 	 */
 	void setAddress(String address)
 	{
-		if(address != null) this.address = address;
+		if(address != null)
+			this.address = address;
 	}
 	/**
 	 * Gets the {@link Person employee}'s postcode.
@@ -120,12 +119,12 @@ class Person
 	/**
 	 * Sets the {@link Person employee}'s postcode.
 	 *
-	 * @param postcode
-	 * 		{@link Person}'s new postcode.
+	 * @param postcode {@link Person}'s new postcode.
 	 */
 	void setPostcode(String postcode)
 	{
-		if(postcode != null) this.postcode = postcode;
+		if(postcode != null)
+			this.postcode = postcode;
 	}
 	/**
 	 * @return {@link Person} object represented as a string. Specifically, their {@link Person#name name}.
